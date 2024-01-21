@@ -41,3 +41,15 @@ class BlogPost(db.Model):
     body = db.Column(db.String(200))
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+# routes
+@app.route("/users", methods=["POST"])
+def create_user():
+    return jsonify({"message" : "create_user"})
+
+@app.route("/users/<user_id>", methods=["GET"])
+def get_user_by_id():
+    return jsonify({"message" : "get_user_by_id"})
+
+if __name__ == "__main__":
+    app.run(debug=True)
