@@ -28,5 +28,5 @@ pip install
 ### Run the server
 
 ```bash
-python3 server.py
+python3 .
 ```
