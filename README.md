@@ -6,8 +6,8 @@
 <hr/>
 
 ## 📃 Description
-This is a project that follows [this freecodecamp tutorial](https://youtu.be/74NW-84BqbA?si=iniSY8VVZaj4otWT).  
 
+This is a project that follows [this freecodecamp tutorial](https://youtu.be/74NW-84BqbA?si=iniSY8VVZaj4otWT).
 
 ## ⚙️ Set up
 
@@ -16,13 +16,24 @@ This is a project that follows [this freecodecamp tutorial](https://youtu.be/74N
 Run the following command:
 
 ```bash
+python3 -m venv venv
 . venv/bin/activate
 ```
 
 ### Install the dependencies
 
 ```bash
-pip install
+pip install -r requirements.txt
+```
+
+### Set up the DB
+
+```bash
+python3
+from server import app, db
+app.app_context().push()
+db.create_all()
+exit()
 ```
 
 ### Run the server
