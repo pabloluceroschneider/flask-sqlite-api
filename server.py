@@ -59,6 +59,3 @@ def create_user():
 @app.route("/users/<user_id>", methods=["GET"])
 def get_user_by_id():
     return jsonify({"message" : "get_user_by_id"})
-
-if __name__ == "__main__":
-    app.run(debug=True)
