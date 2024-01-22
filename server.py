@@ -4,6 +4,7 @@ from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 # app
 app = Flask(__name__)
@@ -33,6 +34,23 @@ class User(db.Model):
     phone = db.Column(db.String(50))
     posts = db.relationship("BlogPost", cascade="all, delete")
 
+    def as_dict(row):
+      return {
+        "id": row.id,
+        "name": row.name,
+        "email": row.email,
+        "address": row.address,
+        "phone": row.phone,
+      }
+
+    
+    def as_array(rows):
+      data = []
+      for u in rows:
+        data.append(User.as_dict(u))
+      return data
+
+
 
 class BlogPost(db.Model):
     __tablename__ = "blog_post"
@@ -47,14 +65,20 @@ class BlogPost(db.Model):
 def create_user():
     data = request.get_json()
     new_user = User(
-        name=data["name"],
-        email=data["email"],
-        address=data["address"],
-        phone=data["phone"],
+      name=data["name"],
+      email=data["email"],
+      address=data["address"],
+      phone=data["phone"],
     )
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"messager": "user created"}), 200
+
+@app.route("/users", methods=["GET"])
+def get_all_users():
+    users = User.query.all()
+    data = User.as_array(users)
+    return jsonify(data), 200
 
 @app.route("/users/<user_id>", methods=["GET"])
 def get_user_by_id():
