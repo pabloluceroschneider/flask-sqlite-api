@@ -71,5 +71,6 @@ def get_all_users():
   return jsonify(users), 200
 
 @app.route("/users/<user_id>", methods=["GET"])
-def get_user_by_id():
-    return jsonify({"message" : "get_user_by_id"})
+def get_user_by_id(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user), 200
