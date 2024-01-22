@@ -26,16 +26,6 @@ python3 -m venv venv
 pip install -r requirements.txt
 ```
 
-### Set up the DB
-
-```bash
-python3
-from server import app, db
-app.app_context().push()
-db.create_all()
-exit()
-```
-
 ### Run the server
 
 ```bash
