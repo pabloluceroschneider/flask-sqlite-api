@@ -4,6 +4,8 @@ from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from dataclasses import dataclass
+import json
 
 # app
 app = Flask(__name__)
@@ -24,8 +26,15 @@ db = SQLAlchemy(app)
 now = datetime.now()
 
 # models
+@dataclass
 class User(db.Model):
     __tablename__ = "user"
+    id: int
+    name: str
+    email: str
+    address: str
+    phone: str
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     email = db.Column(db.String(50))
@@ -33,7 +42,7 @@ class User(db.Model):
     phone = db.Column(db.String(50))
     posts = db.relationship("BlogPost", cascade="all, delete")
 
-
+@dataclass
 class BlogPost(db.Model):
     __tablename__ = "blog_post"
     id = db.Column(db.Integer, primary_key=True)
@@ -47,14 +56,19 @@ class BlogPost(db.Model):
 def create_user():
     data = request.get_json()
     new_user = User(
-        name=data["name"],
-        email=data["email"],
-        address=data["address"],
-        phone=data["phone"],
+      name=data["name"],
+      email=data["email"],
+      address=data["address"],
+      phone=data["phone"],
     )
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"messager": "user created"}), 200
+
+@app.route("/users", methods=["GET"])
+def get_all_users():
+  users = User.query.all()
+  return jsonify(users), 200
 
 @app.route("/users/<user_id>", methods=["GET"])
 def get_user_by_id():

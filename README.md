@@ -11,12 +11,17 @@ This is a project that follows [this freecodecamp tutorial](https://youtu.be/74N
 
 ## ⚙️ Set up
 
-### Activate the virtual environment
+### Virtual environment
 
-Run the following command:
+Create venv
 
 ```bash
 python3 -m venv venv
+```
+
+Activate venv
+
+```bash
 . venv/bin/activate
 ```
 
@@ -24,16 +29,6 @@ python3 -m venv venv
 
 ```bash
 pip install -r requirements.txt
-```
-
-### Set up the DB
-
-```bash
-python3
-from server import app, db
-app.app_context().push()
-db.create_all()
-exit()
 ```
 
 ### Run the server
