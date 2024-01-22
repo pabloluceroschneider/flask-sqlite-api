@@ -74,6 +74,19 @@ def get_user_by_id(user_id):
     user = User.query.filter_by(id=user_id).first()
     return jsonify(user), 200
 
+@app.route("/users/<user_id>", methods=["PUT"])
+def update_user_by_id(user_id):
+    data = request.get_json()
+    user = User.query.filter_by(id=user_id).first()
+    
+    user.name = data["name"] 
+    user.email = data["email"]
+    user.address = data["address"]
+    user.phone = data["phone"]
+
+    db.session.commit()
+    return jsonify(user), 200
+
 @app.route("/users/<user_id>", methods=["DELETE"])
 def delete_user_by_id(user_id):
     user = User.query.filter_by(id=user_id).first()
