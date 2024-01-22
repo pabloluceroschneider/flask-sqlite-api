@@ -5,7 +5,6 @@ from sqlalchemy.engine import Engine
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dataclasses import dataclass
-import json
 
 # app
 app = Flask(__name__)
@@ -74,3 +73,10 @@ def get_all_users():
 def get_user_by_id(user_id):
     user = User.query.filter_by(id=user_id).first()
     return jsonify(user), 200
+
+@app.route("/users/<user_id>", methods=["DELETE"])
+def delete_user_by_id(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({}), 200
