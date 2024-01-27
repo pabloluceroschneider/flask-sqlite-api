@@ -7,7 +7,6 @@ class AuthServices:
     def login(body):
         payload = {
             "user": body["user"],
-            "password": body["password"],
             "exp": datetime.datetime.now() + datetime.timedelta(hours=1),
             "iat": datetime.datetime.now()
         }
