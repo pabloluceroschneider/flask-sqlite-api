@@ -1,9 +1,9 @@
-from flask import Flask
-from config import config
+import os
+from .config import config
+from .routes import routes
+from . import create_app
 
-from src import routes
-
-app = Flask(__name__)
+app = create_app(os.getenv("CONFIG_MODE"))
 
 # Routes 
 routes(app)
