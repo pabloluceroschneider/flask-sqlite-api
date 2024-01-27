@@ -31,6 +31,16 @@ source venv/bin/activate
 pip install -r src/requirements.txt
 ```
 
+### DB Setup
+
+Run this commands one by one
+
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
+
 ### Run the server
 
 ```bash
