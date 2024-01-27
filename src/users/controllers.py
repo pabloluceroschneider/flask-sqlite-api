@@ -5,6 +5,7 @@ from .. import db
 def list_users():
     try:
         users = User.query.all()
+        print(users)
         response = []
         for user in users: response.append(user.toDict())
         return jsonify(response)
