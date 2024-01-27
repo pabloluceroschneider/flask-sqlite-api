@@ -47,4 +47,4 @@ def remove_user_by_id(user_id):
     user = User.query.filter_by(id=user_id).first()
     db.session.delete(user)
     db.session.commit()
-    return jsonify({ "message": f"User {user.id} has been removed"}), 200
+    return jsonify({ "message": f"User with id '{user.id}' has been successfully removed"}), 200
