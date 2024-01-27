@@ -7,7 +7,7 @@
 
 ## 📃 Description
 
-This is a project that follows [this freecodecamp tutorial](https://youtu.be/74NW-84BqbA?si=iniSY8VVZaj4otWT).
+I built this project following [this freecodecamp tutorial](https://youtu.be/74NW-84BqbA?si=iniSY8VVZaj4otWT) and [this blog](https://medium.com/@yahiaqous/how-to-build-a-crud-api-using-python-flask-and-sqlalchemy-orm-with-postgresql-7869517f8930)
 
 ## ⚙️ Set up
 
