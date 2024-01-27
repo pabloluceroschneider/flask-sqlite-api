@@ -53,3 +53,9 @@ Watch for changes
 ```bash
 FLASK_DEBUG=1 flask run
 ```
+
+### Update requirements
+
+```bash
+python -m pip freeze > requirements.txt
+```
