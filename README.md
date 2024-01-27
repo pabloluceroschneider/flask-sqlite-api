@@ -36,6 +36,7 @@ pip install -r src/requirements.txt
 Run this commands one by one
 
 ```bash
+cd src
 flask db init
 flask db migrate
 flask db upgrade
@@ -44,11 +45,11 @@ flask db upgrade
 ### Run the server
 
 ```bash
-cd src && flask run
+flask run
 ```
 
 Watch for changes
 
 ```bash
-cd src && FLASK_DEBUG=1 flask run
+FLASK_DEBUG=1 flask run
 ```
