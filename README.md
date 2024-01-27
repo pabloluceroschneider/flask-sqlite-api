@@ -22,17 +22,23 @@ python3 -m venv venv
 Activate venv
 
 ```bash
-. venv/bin/activate
+source venv/bin/activate
 ```
 
 ### Install the dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 ```
 
 ### Run the server
 
 ```bash
-flask run
+cd src && flask run
+```
+
+Watch for changes
+
+```bash
+cd src && FLASK_DEBUG=1 flask run
 ```
